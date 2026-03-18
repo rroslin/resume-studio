@@ -1,0 +1,64 @@
+@import url('./reset.css');
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+@media screen {
+	body {
+		background: #eceff4;
+	}
+
+	main {
+		/* approx A4 dimensions */
+		width: 49.5rem;
+		height: 70rem;
+		padding: 5rem;
+		margin: 1.5rem auto;
+		background: #ffff;
+	}
+
+	.print-only {
+		display: none;
+	}
+}
+
+@media print {
+	.non-print { 
+		display: none;
+	}
+	.print-only {
+		display: inline;
+	}
+}
+
+body {
+	color: #4c566a;
+	font-family: 'Inter';
+	font-size: 1rem;
+	line-height: 1.2;
+}
+
+section {
+	margin-bottom: 1.75rem;
+}
+
+h2 {
+	color: #434c5e;
+	font-weight: 500;
+	font-size: 1.25rem;
+}
+
+.skills {
+	margin-top: 0.75;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.skills__badge {
+	display: flex;
+	align-self: center;
+	background: #81a1c1;
+	color: white;
+	padding: 0.3rem;
+	border-radius: 0.5rem;
+	margin-right: 0.3rem;
+	margin-top: 0.3rem;
+}

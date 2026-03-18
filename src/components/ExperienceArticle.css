@@ -1,0 +1,13 @@
+.exp {
+	margin-top: 0.75rem;
+}
+.exp__description {
+	font-weight: 600;
+}
+.exp__milestone-list {
+	margin-left: 1rem;
+	list-style: disc;
+}
+.exp__milestone-item {
+	margin-top: 0.3rem;
+}
