@@ -1,36 +1,36 @@
-.header {
-	color: #434c5e;
-	font-weight: 600;
-	font-size: 2rem;
-	margin-bottom: 0.5rem;
-}
-
-.heading__cont {
+.profile {
 	display: flex;
 	flex-direction: row;
 }
 
-.heading__img {
+.profile__img {
 	display: block;
 	height: 10rem;
 	margin-right: 2.5rem;
 }
 
-.heading__img--rounded {
+.profile__img--rounded {
 	border-radius: 50%;
 }
 
-.heading__info {
+.profile__info {
 	display: flex;
 	flex-direction: column;
 	align-self: center;
 }
 
-.position {
+.profile__name {
+	color: #434c5e;
+	font-weight: 600;
+	font-size: 2rem;
+	margin-bottom: 0.5rem;	
+}
+
+.profile__position {
 	margin-bottom: 1rem;
 }
 
-.contact {
+.profile__contact {
 	display: flex;
 	flex-wrap: wrap;
 }

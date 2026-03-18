@@ -10,8 +10,8 @@ type ContactItemProps = {
 function ContactItem(props: ContactItemProps) {
 	const { type, value, href } = props.contact
 	return (
-	<span class="contact__item">
-		<span class="icon">{`${type}: `}</span>
+	<span class="contact">
+		<span class="contact__icon">{`${type}: `}</span>
 		<Show when={href} fallback={<span>{value}</span>}>
 			<span class="non-print"><a href={href}>{value}</a></span>
 			<span class="print-only">{href}</span>

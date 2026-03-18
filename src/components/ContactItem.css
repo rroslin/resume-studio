@@ -1,9 +1,9 @@
-.contact__item {
+.contact {
 	margin-top: 0.75rem;
 	margin-right: 1.5rem;
 }
 
-.icon {
+.contact__icon {
 	color: #434c5e;
 	font-size: 1rem;
 }
