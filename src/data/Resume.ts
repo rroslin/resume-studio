@@ -9,8 +9,8 @@ export type Resume = {
 
 export type Profile = {
 	firstName: string
+	middleName?: string
 	lastName: string
-	fullName?: string
 	title: string
 	photoUrl?: string
 	contacts: Contact[]
