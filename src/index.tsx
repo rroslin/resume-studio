@@ -9,8 +9,9 @@ import AwardItem from './components/AwardItem'
 import './index.css'
 
 function Application() {
-  const resume = fixture as Resume
-  document.title = `${resume.profile.firstName} ${resume.profile.lastName}`
+  const resume = fixture as Resume;
+  const nameWithInitial =`${resume.profile.firstName} ${resume.profile.lastName.charAt(0)}.`;
+  document.title = nameWithInitial;
 
   return (
     <main>

@@ -7,8 +7,9 @@ type AwardItemProps = {
 }
 
 function AwardItem(props: AwardItemProps) {
-	const { name, date, company, project } = props.award
-	const provider = project ? `${company} - ${project}` : `${company}`
+	const { name, date, company, project } = props.award;
+	const provider = project ? `${company} - ${project}` : `${company}`;
+	
 	return (
 	<div class="award__item">
 		<div class="award__desc">{`${name} [${date}]`}</div>

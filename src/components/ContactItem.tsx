@@ -8,7 +8,8 @@ type ContactItemProps = {
 }
 
 function ContactItem(props: ContactItemProps) {
-	const { type, value, href } = props.contact
+	const { type, value, href } = props.contact;
+	
 	return (
 	<span class="contact">
 		<span class="contact__icon">{`${type}: `}</span>

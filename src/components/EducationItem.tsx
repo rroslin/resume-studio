@@ -7,7 +7,8 @@ type EducationItemProps = {
 }
 
 function EducationItem(props: EducationItemProps) {
-	const { institution, start, end, degree } = props.education
+	const { institution, start, end, degree } = props.education;
+	
 	return (
 	<div class="educ">
 		<div class="educ__desc">
