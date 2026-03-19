@@ -19,7 +19,7 @@ function Application() {
 				<section class="page__section --avoid-break-inside">
 					<span>{resume.summary}</span>
 				</section>
-				<section class="page__section --avoid-break-inside">
+				<section>
 					<h2>Experience</h2>
 					<For each={resume.experiences}>
 						{(experience) => (
