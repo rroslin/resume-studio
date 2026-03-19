@@ -11,7 +11,7 @@ function AwardItem(props: AwardItemProps) {
 	const provider = project ? `${company} - ${project}` : `${company}`;
 	
 	return (
-	<div class="award__item">
+	<div class="award">
 		<div class="award__desc">{`${name} [${date}]`}</div>
 		<span class="award__company">{provider}</span>
 	</div>
