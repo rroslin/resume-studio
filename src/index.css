@@ -1,18 +1,75 @@
 @import url('./reset.css');
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
+@page {
+	size: A4;
+	margin: 0;
+}
+
+:root {
+	--viewer-background: #eceff4;
+	--page-background: #ffffff;
+	--page-foreground: #4c566a;
+	--page-heading: #434c5e;
+	--page-accent: #81a1c1;
+	--page-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.12);
+	--page-width: 210mm;
+	--page-height: 297mm;
+	--page-padding-y: 18mm;
+	--page-padding-x: 18mm;
+}
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	color: var(--page-foreground);
+	font-family: 'Inter', sans-serif;
+	font-size: 1rem;
+	line-height: 1.35;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1.5rem 0 3rem;
+}
+
+.page {
+	width: min(var(--page-width), calc(100vw - 2rem));
+	min-height: var(--page-height);
+	background: var(--page-background);
+	color: var(--page-foreground);
+	box-shadow: var(--page-shadow);
+	border-radius: 0.35rem;
+	padding: var(--page-padding-y) var(--page-padding-x);
+}
+
+.page__block,
+.page__section {
+	break-inside: auto;
+}
+
+.--avoid-break-inside {
+	break-inside: avoid;
+}
+
+.--break-before {
+	break-before: page;
+}
+
+.page__section + .page__section {
+	margin-top: 1.75rem;
+}
+
 @media screen {
 	body {
-		background: #eceff4;
-	}
-
-	main {
-		/* approx A4 dimensions */
-		width: 49.5rem;
-		height: 70rem;
-		padding: 5rem;
-		margin: 1.5rem auto;
-		background: #ffff;
+		background: var(--viewer-background);
 	}
 
 	.print-only {
@@ -21,19 +78,41 @@
 }
 
 @media print {
+	html,
+	body,
+	#root {
+		height: auto;
+	}
+
+	body {
+		background: transparent;
+	}
+
+	main {
+		display: block;
+		padding: 0;
+	}
+
+	.page {
+		width: var(--page-width);
+		min-height: var(--page-height);
+		margin: 0;
+		box-shadow: none;
+		border-radius: 0;
+		break-after: page;
+	}
+
+	.page:last-child {
+		break-after: auto;
+	}
+
 	.non-print { 
 		display: none;
 	}
+
 	.print-only {
 		display: inline;
 	}
-}
-
-body {
-	color: #4c566a;
-	font-family: 'Inter';
-	font-size: 1rem;
-	line-height: 1.2;
 }
 
 section {
@@ -41,13 +120,13 @@ section {
 }
 
 h2 {
-	color: #434c5e;
+	color: var(--page-heading);
 	font-weight: 500;
 	font-size: 1.25rem;
 }
 
 .skills {
-	margin-top: 0.75;
+	margin-top: 0.75rem;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -55,7 +134,7 @@ h2 {
 .skills__badge {
 	display: flex;
 	align-self: center;
-	background: #81a1c1;
+	background: var(--page-accent);
 	color: white;
 	padding: 0.3rem;
 	border-radius: 0.5rem;
