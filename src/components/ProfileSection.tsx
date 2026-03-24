@@ -4,29 +4,25 @@ import ContactItem from './ContactItem'
 
 import './ProfileSection.css'
 
-type ProfileSectionProps = {
-	profile: Profile
-}
+type ProfileSectionProps = Profile;
 
 function ProfileSection(props: ProfileSectionProps) {
-	const { firstName, lastName, title, photoUrl, contacts } = props.profile;
-	const fullName = `${firstName} ${lastName}`;
-
+	const fullName = () => `${props.firstName} ${props.lastName}`;
 	return (
 	<section class="section">
 		<div class="profile">
-			<Show when={photoUrl}>
-				<img class="profile__img profile__img--rounded" src={photoUrl}
-					alt={fullName}/>
+			<Show when={props.photoUrl}>
+				<img class="profile__img profile__img--rounded" src={props.photoUrl}
+					alt={fullName()}/>
 			</Show>
 			<div class="profile__info">
 				<div>
-					<h1 class="profile__name">{fullName}</h1>
-					<div class="profile__position">{title}</div>
+					<h1 class="profile__name">{fullName()}</h1>
+					<div class="profile__position">{props.title}</div>
 				</div>
 				<div class="profile__contact">
-					<For each={contacts}>
-					{(contact) => <ContactItem contact={contact} />}
+					<For each={props.contacts}>
+					{(contact) => <ContactItem {...contact} />}
 					</For>
 				</div>
 			</div>

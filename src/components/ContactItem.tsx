@@ -34,20 +34,16 @@ const iconMap: Partial<Record<Contact['type'], Component>> = {
 	github: Github
 }
 
-type ContactItemProps = {
-  contact: Contact
-}
+type ContactItemProps = Contact;
 
 function ContactItem(props: ContactItemProps) {
-	const { type, value, href } = props.contact;
-	const Icon = iconMap[type];
-	
+	const Icon = iconMap[props.type];
 	return (
 	<span class="contact">
-		<span class="contact__icon">{Icon ? <Icon /> : `${type}: `}</span>
-		<Show when={href} fallback={<span>{value}</span>}>
-			<span class="non-print"><a href={href}>{value}</a></span>
-			<span class="print-only">{href}</span>
+		<span class="contact__icon">{Icon ? <Icon /> : `${props.type}: `}</span>
+		<Show when={props.href} fallback={<span>{props.value}</span>}>
+			<span class="non-print"><a href={props.href}>{props.value}</a></span>
+			<span class="print-only">{props.href}</span>
 		</Show>
 	</span>
 	)

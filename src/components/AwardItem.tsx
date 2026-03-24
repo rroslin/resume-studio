@@ -1,19 +1,17 @@
+import { createMemo } from 'solid-js';
 import type { Award } from '../data/Resume'
 
 import './AwardItem.css'
 
-type AwardItemProps = {
-	award: Award
-}
+type AwardItemProps = Award
 
 function AwardItem(props: AwardItemProps) {
-	const { name, date, company, project } = props.award;
-	const provider = project ? `${company} - ${project}` : `${company}`;
-	
+	const description = createMemo(() => `${props.name} [${props.date}]`);
+	const provider = createMemo(() => props.project ? `${props.company} - ${props.project}` : `${props.company}`);
 	return (
 	<div class="award">
-		<div class="award__desc">{`${name} [${date}]`}</div>
-		<span class="award__company">{provider}</span>
+		<div class="award__desc">{description()}</div>
+		<span class="award__company">{provider()}</span>
 	</div>
 	)
 }
