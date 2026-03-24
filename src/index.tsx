@@ -1,5 +1,9 @@
 import type { Resume } from './data/Resume'
+import type { SetStoreFunction } from 'solid-js/store'
 import { For, render } from 'solid-js/web'
+import { createStore } from 'solid-js/store'
+import { createEffect } from 'solid-js'
+
 import fixture from './fixtures/raymark_roslin.json'
 import ProfileSection from './components/ProfileSection'
 import ExperienceArticle from './components/ExperienceArticle'
@@ -7,8 +11,6 @@ import EducationItem from './components/EducationItem'
 import AwardItem from './components/AwardItem'
 
 import './index.css'
-import { createStore, type SetStoreFunction } from 'solid-js/store'
-import { createEffect } from 'solid-js'
 
 declare global {
 	var store: Resume
@@ -43,8 +45,6 @@ function Application() {
 						)}
 					</For>
 				</section>
-			</article>
-			<article class="page">
 				<section class="page__section --avoid-break-inside">
 					<h2>Skills</h2>
 					<div class="skills">
@@ -80,6 +80,4 @@ function Application() {
 
 const root = document.getElementById('root')
 render(() => <Application />, root!);
-
-
 
