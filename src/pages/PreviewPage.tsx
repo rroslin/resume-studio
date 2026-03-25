@@ -1,7 +1,7 @@
 import { For } from 'solid-js/web'
 import { useResumeContext } from '../contexts/ResumeContext'
 
-import ProfileSection from '../components/ProfileSection'
+import ProfileArticle from '../components/ProfileArticle'
 import ExperienceArticle from '../components/ExperienceArticle'
 import EducationItem from '../components/EducationItem'
 import AwardItem from '../components/AwardItem'
@@ -12,47 +12,35 @@ function PreviewPage() {
 	const { resume } = useResumeContext();
 
 	return (
-		<div class="page">
-			<ProfileSection {...resume.profile} />
-			<section class="page__section --avoid-break-inside">
+		<div class="preview-page">
+			<section>
+				<ProfileArticle {...resume.profile} />
 				<span>{resume.summary}</span>
 			</section>
 			<section>
 				<h2>Experience</h2>
 				<For each={resume.experiences}>
-					{(experience) => (
-						<div class="page__block --avoid-break-inside">
-							<ExperienceArticle {...experience} />
-						</div>
-					)}
+					{(experience) => <ExperienceArticle {...experience} />}
 				</For>
 			</section>
-			<section class="page__section --avoid-break-inside">
+			<section>
 				<h2>Skills</h2>
 				<div class="skills">
 					<For each={resume.skills}>
-						{(skill) => <div class="skills__badge">{skill}</div>}
+						{(skill) => <div class="badge">{skill}</div>}
 					</For>
 				</div>
 			</section>
-			<section class="page__section --avoid-break-inside">
+			<section>
 				<h2>Education</h2>
 				<For each={resume.educations}>
-					{(education) => (
-						<div class="page__block --avoid-break-inside">
-							<EducationItem {...education} />
-						</div>
-					)}
+					{(education) => <EducationItem {...education} />}
 				</For>
 			</section>
-			<section class="page__section --avoid-break-inside">
+			<section>
 				<h2>Awards</h2>
 				<For each={resume.awards}>
-					{(award) => (
-						<div class="page__block --avoid-break-inside">
-							<AwardItem {...award} />
-						</div>
-					)}
+					{(award) => <AwardItem {...award} />}
 				</For>
 			</section>
 		</div>
