@@ -40,9 +40,9 @@ function ContactItem(props: ContactItemProps) {
 	const Icon = iconMap[props.type];
 	return (
 	<span class="contact">
-		<span class="contact__icon">{Icon ? <Icon /> : `${props.type}: `}</span>
+		<span class="icon">{Icon ? <Icon /> : `${props.type}: `}</span>
 		<Show when={props.href} fallback={<span>{props.value}</span>}>
-			<span class="non-print"><a href={props.href}>{props.value}</a></span>
+			<span class="screen-only"><a href={props.href}>{props.value}</a></span>
 			<span class="print-only">{props.href}</span>
 		</Show>
 	</span>
