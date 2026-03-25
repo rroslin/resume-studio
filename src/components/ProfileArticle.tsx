@@ -2,14 +2,14 @@ import { For, Show } from 'solid-js'
 import type { Profile } from '../data/Resume'
 import ContactItem from './ContactItem'
 
-import './ProfileSection.css'
+import './ProfileArticle.css'
 
-type ProfileSectionProps = Profile;
+type ProfileArticleProps = Profile;
 
-function ProfileSection(props: ProfileSectionProps) {
+function ProfileArticle(props: ProfileArticleProps) {
 	const fullName = () => `${props.firstName} ${props.lastName}`;
 	return (
-	<section class="section">
+	<section>
 		<div class="profile">
 			<Show when={props.photoUrl}>
 				<img class="profile__img profile__img--rounded" src={props.photoUrl}
@@ -31,4 +31,4 @@ function ProfileSection(props: ProfileSectionProps) {
 	)
 }
 
-export default ProfileSection
+export default ProfileArticle
