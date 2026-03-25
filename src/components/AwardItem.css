@@ -1,5 +1,6 @@
 .award {
 	margin-top: 0.75rem;
+	break-inside: avoid;
 }
 
 .award__desc {

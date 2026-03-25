@@ -1,5 +1,6 @@
 .educ {
 	margin-top: 0.75rem;
+	break-inside: avoid;
 }
 .educ__desc {
 	font-weight: 600;
