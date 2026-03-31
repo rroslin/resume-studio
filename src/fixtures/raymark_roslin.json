@@ -1,112 +1,112 @@
 {
-  "profile": {
-    "firstName": "Raymark",
-	"middleName": "Roble",
-    "lastName": "Roslin",
-    "title": "Software Engineer",
-    "contacts": [
-      {
-        "type": "phone",
-        "value": "0995 735 5386"
-      },
-      {
-        "type": "email",
-        "value": "raymark.roslin@gmail.com"
-      },
-      {
-        "type": "github",
-        "value": "rroslin",
-        "href": "https://github.com/rroslin"
-      }
-    ]
-  },
-  "summary": "Senior Software Engineer with a strong background in full-stack development, system integration, and education technology solutions. Skilled in maintaining legacy systems and developing modern applications with Ruby on Rails. Proven track record of leading teams, implementing API and industry standards and delivering automation tools that optimize workflows.",
-  "experiences": [
-    {
-      "company": "StrongMind",
-      "role": "Senior Software Engineer",
-      "start": "09/2022",
-      "end": "Present",
-      "highlights": [
-        "Collaborated as part of a team of five developers, working asynchronously with US-based product owners and UX designers.",
-        "Work closely with product owners and UX designers to refine and ensure stories are well-defined and actionable.",
-        "Incidence response and resolution for production issues, ensuring minimal downtime and impact on users.",
-        "TDD development of new features and bug fixes for a Ruby on Rails application.",
-        "Maintained and enhanced legacy .NET Framework applications in a fast-paced EdTech environment.",
-        "Added improvements to deployment pipelines and CI/CD processes, for both Azure and AWS environments.",
-        "Integrated with Canvas LMS via API for streamlined data workflows and feature enhancements.",
-        "Built applications adhering to LTI 1.1 and OneRoster specs, ensuring compliance and interoperability.",
-        "Implemented HATEOS principles via Rail Hotwire.",
-        "Contributed to ETL processes and built basic data visualizations for internal reporting.",
-        "Mentored team members on how to tackle issues and breakdown problems to smaller tasks."
-      ]
-    },
-    {
-      "company": "Freelance",
-      "role": "Fullstack Developer",
-      "start": "10/2021",
-      "end": "Present",
-      "highlights": [
-        "Developed independently a exam question repository for a learning institution (MERN Full Stack).",
-        "Developed and integrated a authentication service (JWT based) for a learning institution.",
-        "Tutored students on variety of web-development frameworks. (Django, MERN)"
-      ]
-    },
-    {
-      "company": "Accenture Inc.",
-      "role": "Software Engineer",
-      "start": "11/2018",
-      "end": "02/2021",
-      "highlights": [
-        "Provided support and Code Maintenance for client Provisioning system, ensuring job orders are fulfilled through interconnected support systems.",
-        "Developed a data conversion tool independently for a geographic information system (GIS) that is used to provide vendors and partner companies with marketing insights. Coordinated directly with client business analysts and accurately delivered functional requirements.",
-        "Supervised a team of 5 software engineers for an initiative to research tooling and training resource for migrating a code versioning system (SVN to GIT). The team eventually successfully migrated all codebase to GIT and provided project wide training for basics to advance usage of GIT.",
-        "Provided system analysis for suspected software defects and created documentation and code fix.",
-        "Developed automation tooling used to supplement robotic process automation (RPA) that increases success rate automated jobs.",
-        "Got hired through Student Leadership Conference, that allowed skipping junior level and directly hired as a Software Engineer."
-      ]
-    }
-  ],
-  "skills": [
-    "C#",
-    "Javascript/Typescript",
-    "Python",
-    "Java SE & EE",
-    "Legacy Microsoft (Visual Basic, Shell)",
-    "PostgreSQL",
-    "CVS (Git, SVN)",
-    "Node.js/Express",
-    ".NET",
-    "Ruby on Rails",
-    "Hotwire (Turbo & Stimulus)",
-    "Django",
-    "AWS",
-    "Azure",
-    "Agile Software development",
-    "Test-driven development",
-    "REST and HATEOS architectural style",
-    "Data Analysis and ETL"
-  ],
-  "educations": [
-    {
-      "institution": "University of Santo Tomas",
-      "start": "2014",
-      "end": "2018",
-      "degree": "Bachelor of Science in Information Systems Specialized on Business Analytics"
-    }
-  ],
-  "awards": [
-    {
-      "name": "Agila Award",
-      "date": "10/2019",
-      "company": "Accenture Inc.",
-      "project": "Project Lighthouse"
-    },
-    {
-      "name": "Likha Award",
-      "date": "10/2019",
-      "company": "Accenture Inc.",
-      "project": "Project Lighthouse"
-    }
-  ]
+	"profile": {
+		"firstName": "Raymark",
+		"middleName": "Roble",
+		"lastName": "Roslin",
+		"title": "Software Engineer",
+		"summary": "Senior Software Engineer with a strong background in full-stack development, system integration, and education technology solutions. Skilled in maintaining legacy systems and developing modern applications with Ruby on Rails. Proven track record of leading teams, implementing API and industry standards and delivering automation tools that optimize workflows.",
+		"contacts": [
+			{
+				"type": "phone",
+				"value": "0995 735 5386"
+			},
+			{
+				"type": "email",
+				"value": "raymark.roslin@gmail.com"
+			},
+			{
+				"type": "github",
+				"value": "rroslin",
+				"href": "https://github.com/rroslin"
+			}
+		]
+	},
+	"experiences": [
+		{
+			"company": "StrongMind",
+			"role": "Senior Software Engineer",
+			"start": "09/2022",
+			"end": "Present",
+			"highlights": [
+				"Collaborated as part of a team of five developers, working asynchronously with US-based product owners and UX designers.",
+				"Work closely with product owners and UX designers to refine and ensure stories are well-defined and actionable.",
+				"Incidence response and resolution for production issues, ensuring minimal downtime and impact on users.",
+				"TDD development of new features and bug fixes for a Ruby on Rails application.",
+				"Maintained and enhanced legacy .NET Framework applications in a fast-paced EdTech environment.",
+				"Added improvements to deployment pipelines and CI/CD processes, for both Azure and AWS environments.",
+				"Integrated with Canvas LMS via API for streamlined data workflows and feature enhancements.",
+				"Built applications adhering to LTI 1.1 and OneRoster specs, ensuring compliance and interoperability.",
+				"Implemented HATEOS principles via Rail Hotwire.",
+				"Contributed to ETL processes and built basic data visualizations for internal reporting.",
+				"Mentored team members on how to tackle issues and breakdown problems to smaller tasks."
+			]
+		},
+		{
+			"company": "Freelance",
+			"role": "Fullstack Developer",
+			"start": "10/2021",
+			"end": "Present",
+			"highlights": [
+				"Developed independently a exam question repository for a learning institution (MERN Full Stack).",
+				"Developed and integrated a authentication service (JWT based) for a learning institution.",
+				"Tutored students on variety of web-development frameworks. (Django, MERN)"
+			]
+		},
+		{
+			"company": "Accenture Inc.",
+			"role": "Software Engineer",
+			"start": "11/2018",
+			"end": "02/2021",
+			"highlights": [
+				"Provided support and Code Maintenance for client Provisioning system, ensuring job orders are fulfilled through interconnected support systems.",
+				"Developed a data conversion tool independently for a geographic information system (GIS) that is used to provide vendors and partner companies with marketing insights. Coordinated directly with client business analysts and accurately delivered functional requirements.",
+				"Supervised a team of 5 software engineers for an initiative to research tooling and training resource for migrating a code versioning system (SVN to GIT). The team eventually successfully migrated all codebase to GIT and provided project wide training for basics to advance usage of GIT.",
+				"Provided system analysis for suspected software defects and created documentation and code fix.",
+				"Developed automation tooling used to supplement robotic process automation (RPA) that increases success rate automated jobs.",
+				"Got hired through Student Leadership Conference, that allowed skipping junior level and directly hired as a Software Engineer."
+			]
+		}
+	],
+	"skills": [
+		"C#",
+		"Javascript/Typescript",
+		"Python",
+		"Java SE & EE",
+		"Legacy Microsoft (Visual Basic, Shell)",
+		"PostgreSQL",
+		"CVS (Git, SVN)",
+		"Node.js/Express",
+		".NET",
+		"Ruby on Rails",
+		"Hotwire (Turbo & Stimulus)",
+		"Django",
+		"AWS",
+		"Azure",
+		"Agile Software development",
+		"Test-driven development",
+		"REST and HATEOS architectural style",
+		"Data Analysis and ETL"
+	],
+	"educations": [
+		{
+			"institution": "University of Santo Tomas",
+			"start": "2014",
+			"end": "2018",
+			"degree": "Bachelor of Science in Information Systems Specialized on Business Analytics"
+		}
+	],
+	"awards": [
+		{
+			"name": "Agila Award",
+			"date": "10/2019",
+			"company": "Accenture Inc.",
+			"project": "Project Lighthouse"
+		},
+		{
+			"name": "Likha Award",
+			"date": "10/2019",
+			"company": "Accenture Inc.",
+			"project": "Project Lighthouse"
+		}
+	]
 }

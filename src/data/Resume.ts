@@ -1,6 +1,5 @@
 export type Resume = {
 	profile: Profile
-	summary: string
 	experiences: Experience[]
 	skills: string[]
 	educations: Education[]
@@ -13,6 +12,7 @@ export type Profile = {
 	lastName: string
 	title: string
 	photoUrl?: string
+	summary: string
 	contacts: Contact[]
 }
 
