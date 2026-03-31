@@ -15,7 +15,6 @@ function PreviewPage() {
 		<div class="preview-page">
 			<section>
 				<ProfileArticle {...resume.profile} />
-				<span>{resume.summary}</span>
 			</section>
 			<section>
 				<h2>Experience</h2>
