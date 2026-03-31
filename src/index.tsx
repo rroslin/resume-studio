@@ -8,6 +8,7 @@ import { ResumeContext } from './contexts/ResumeContext';
 import './index.css'
 import fixture from './fixtures/raymark_roslin.json'
 import PreviewPage from './pages/PreviewPage';
+import EditPage from '~/pages/edit/EditPage'
 
 function Application() {
 	const [resume, setResume] = createStore(fixture as Resume);
@@ -21,6 +22,7 @@ function Application() {
 			<main>
 				<Router>
 					<Route path="/" component={PreviewPage} />
+					<Route path="/edit" component={EditPage} />
 				</Router>
 			</main>
 		</ResumeContext.Provider>

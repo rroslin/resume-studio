@@ -1,0 +1,115 @@
+.edit-page {
+	width: min(var(--page-width), calc(100vw - 2rem));
+	min-height: var(--page-height);
+	background: var(--page-background);
+	color: var(--page-foreground);
+	box-shadow: var(--page-shadow);
+	border-radius: 0.35rem;
+	padding: var(--page-padding-y) var(--page-padding-x);
+
+	display: flex;
+	flex-direction: column;
+
+	h2 {
+		color: var(--page-heading);
+		font-weight: 500;
+		font-size: 1.25rem;
+		margin: 1rem 0;
+	}
+
+	.container {
+		display: flex;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+
+		&.--col {
+			flex-direction: column;
+		}
+	}
+
+	input,
+	select,
+	textarea {
+		font: inherit;
+	}
+
+	input,
+	select,
+	textarea {
+		color: var(--page-foreground);
+		border: 1px solid color-mix(in srgb, var(--page-accent) 40%, #ffffff);
+		border-radius: 0.4rem;
+		padding: 0.5rem 0.65rem;
+		background: #ffffff;
+
+		&:focus {
+			outline: 2px solid color-mix(in srgb, var(--page-accent) 55%, #ffffff);
+			outline-offset: 1px;
+		}
+	}
+
+	textarea {
+		resize: vertical;
+		min-height: 5rem;
+	}
+}
+
+.add-button {
+	align-self: center;
+	margin-top: 0.75rem;
+	padding: 0;
+	border: none;
+	border-radius: 20%;
+	background: transparent;
+	color: var(--page-heading);
+	width: 2rem;
+	height: 2rem;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: color 120ms ease, transform 120ms ease;
+
+	&:hover {
+		color: var(--page-accent);
+	}
+
+	&:active {
+		transform: translateY(1px);
+	}
+
+	&:focus-visible {
+		outline: 2px solid color-mix(in srgb, var(--page-accent) 55%, #ffffff);
+		outline-offset: 2px;
+	}
+
+	svg {
+		width: 100%;
+		height: 100%;
+		display: block;
+		fill: currentColor;
+	}
+}
+
+
+.edit-card {
+	border: 1px solid color-mix(in srgb, var(--page-accent) 30%, #ffffff);
+	border-radius: 0.5rem;
+	padding: 0.85rem;
+	margin-top: 0.75rem;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+
+	& span {
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--page-heading);
+	}
+
+	&.--full {
+		flex: 1;
+	}
+}
