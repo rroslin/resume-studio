@@ -4,6 +4,7 @@ import { createStore, produce } from "solid-js/store";
 
 import "./EditPage.css"
 import EditContactSection from "./EditContactSection";
+import EditExperienceSection from "./EditExperienceSection";
 
 function EditPage() {
 	const { resume } = useResumeContext();
@@ -64,8 +65,7 @@ function EditPage() {
 				</label>
 			</div>
 			<EditContactSection resume={resume}/>
-
-			<h2>Experience</h2>
+			<EditExperienceSection resume={resume}/>
 
 			<h2>Skills</h2>
 
