@@ -1,20 +1,23 @@
 import { For, Show } from "solid-js";
 import { createStore, produce, type SetStoreFunction } from "solid-js/store";
 import type { Contact, Resume } from "~/data/Resume";
-import AddIcon from "./AddIcon";
+import AddIcon from "~/components/icons/Add";
+import DeleteIcon from "~/components/icons/Delete";
 
-function ContactCard(props: { index: number, contact: Contact, setContacts: SetStoreFunction<Contact[]> }) {
-	const setType = (type: string) => props.setContacts(props.index, produce(contact => contact.type = type as Contact["type"]));
-	const setValue = (value: string) => props.setContacts(props.index, produce(contact => contact.value = value));
-	const setHref = (href: string) => props.setContacts(props.index, produce(contact => contact.href = href));
+function ContactCard(props: { index: number, contacts: Contact[], setContacts: SetStoreFunction<Contact[]> }) {
+	const [contact, setContact] = createStore(props.contacts[props.index]);
+	const removeContact = () => props.setContacts(produce(contacts => contacts.splice(props.index, 1)));
 	return (
 		<div class="edit-card">
+			<button class="remove-button" type="button" onClick={removeContact} aria-label="Remove contact">
+				<DeleteIcon />
+			</button>
 			<div class="container">
 				<label class="field">
 					<span>Type</span>
 					<select
-						value={props.contact.type}
-						onInput={(event) => setType(event.currentTarget.value)}
+						value={contact.type}
+						onInput={(event) => setContact(produce(contact => contact.type = event.currentTarget.value as Contact["type"]))}
 					>
 						<option value="phone">Phone</option>
 						<option value="email">Email</option>
@@ -26,19 +29,19 @@ function ContactCard(props: { index: number, contact: Contact, setContacts: SetS
 					<span>Value</span>
 					<input
 						type="text"
-						value={props.contact.value}
-						onInput={(event) => setValue(event.currentTarget.value)}
+						value={contact.value}
+						onInput={(event) => setContact(produce(contact => contact.value = event.currentTarget.value))}
 					/>
 				</label>
 			</div>
-			<Show when={props.contact.type === "github"}>
+			<Show when={contact.type === "github"}>
 				<div class="container">
 					<label class="field --full">
 						<span>Link (optional)</span>
 						<input
 							type="url"
-							value={props.contact.href || ""}
-							onInput={(event) => setHref(event.currentTarget.value)}
+							value={contact.href || ""}
+							onInput={(event) => setContact(produce(contact => contact.href = event.currentTarget.value))}
 						/>
 					</label>
 				</div>
@@ -54,7 +57,7 @@ function EditContactSection(props: { resume: Resume }) {
 		<>
 			<h2>Contacts</h2>
 			<For each={contacts}>
-				{(contact, index) => <ContactCard index={index()} contact={contact} setContacts={setContacts} />}
+				{(_, index) => <ContactCard index={index()} contacts={contacts} setContacts={setContacts} />}
 			</For>
 			<button class="add-button" type="button" onClick={addContact}><AddIcon /></button>
 		</>
