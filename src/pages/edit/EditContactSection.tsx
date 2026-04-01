@@ -1,8 +1,8 @@
 import { For, Show } from "solid-js";
 import { createStore, produce, type SetStoreFunction } from "solid-js/store";
 import type { Contact, Resume } from "~/data/Resume";
-import AddIcon from "~/components/icons/Add";
-import DeleteIcon from "~/components/icons/Delete";
+
+import Icon from "~/components/Icon";
 
 function ContactCard(props: { index: number, contacts: Contact[], setContacts: SetStoreFunction<Contact[]> }) {
 	const [contact, setContact] = createStore(props.contacts[props.index]);
@@ -10,7 +10,7 @@ function ContactCard(props: { index: number, contacts: Contact[], setContacts: S
 	return (
 		<div class="edit-card">
 			<button class="remove-button" type="button" onClick={removeContact} aria-label="Remove contact">
-				<DeleteIcon />
+				<Icon name="close"/>
 			</button>
 			<div class="container">
 				<label class="field">
@@ -59,7 +59,7 @@ function EditContactSection(props: { resume: Resume }) {
 			<For each={contacts}>
 				{(_, index) => <ContactCard index={index()} contacts={contacts} setContacts={setContacts} />}
 			</For>
-			<button class="add-button" type="button" onClick={addContact}><AddIcon /></button>
+			<button class="add-button" type="button" onClick={addContact}><Icon name="add"/></button>
 		</>
 	)
 }

@@ -17,7 +17,7 @@ export type Profile = {
 }
 
 export type Contact = {
-	type: 'phone' | 'email' | 'github' | 'custom'
+	type: 'phone' | 'email' | 'github'
 	value: string
 	href?: string
 }
