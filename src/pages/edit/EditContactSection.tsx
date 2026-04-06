@@ -4,13 +4,12 @@ import type { Contact, Resume } from "~/data/Resume";
 
 import Icon from "~/components/Icon";
 
-function ContactCard(props: { index: number, contacts: Contact[], setContacts: SetStoreFunction<Contact[]> }) {
-	const [contact, setContact] = createStore(props.contacts[props.index]);
-	const removeContact = () => props.setContacts(produce(contacts => contacts.splice(props.index, 1)));
+function ContactCard(props: { contact: Contact, removeContact: () => void }) {
+	const [contact, setContact] = createStore(props.contact);
 	return (
 		<div class="edit-card">
-			<button class="remove-button" type="button" onClick={removeContact} aria-label="Remove contact">
-				<Icon name="close"/>
+			<button class="remove-button" type="button" onClick={props.removeContact} aria-label="Remove contact">
+				<Icon name="close" />
 			</button>
 			<div class="container">
 				<label class="field">
@@ -52,14 +51,21 @@ function ContactCard(props: { index: number, contacts: Contact[], setContacts: S
 
 function EditContactSection(props: { resume: Resume }) {
 	const [contacts, setContacts] = createStore(props.resume.profile.contacts);
-	const addContact = () => setContacts(contacts.length, { type: "phone", value: "", href: "" });
 	return (
 		<>
 			<h2>Contacts</h2>
 			<For each={contacts}>
-				{(_, index) => <ContactCard index={index()} contacts={contacts} setContacts={setContacts} />}
+				{(contact, i) =>
+					<ContactCard
+						contact={contact}
+						removeContact={() => setContacts(produce(contacts => contacts.splice(i(), 1)))} />
+				}
 			</For>
-			<button class="add-button" type="button" onClick={addContact}><Icon name="add"/></button>
+			<button
+				class="add-button" type="button"
+				onClick={() => setContacts(contacts.length, { type: "phone", value: "", href: "" })}>
+				<Icon name="add" />
+			</button>
 		</>
 	)
 }
