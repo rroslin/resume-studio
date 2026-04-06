@@ -1,27 +1,41 @@
 import { For } from "solid-js";
 import { createStore, produce } from "solid-js/store";
-import type { Experience, Resume } from "~/data/Resume";
+import type { Experience } from "~/data/Resume";
 
 import Icon from "~/components/Icon";
 
-
-function EditExperienceCard(props: { experience: Experience, removeExperience: () => void }) {
+function EditExperienceCard(props: { experience: Experience; index: number; removeExperience: () => void }) {
 	const [experience, setExperience] = createStore(props.experience);
-	const highlightsValue = () => experience.highlights.map(highlight => `- ${highlight}`).join("\n");
-	const updateHighlights = (value: string) =>
-		setExperience("highlights", value.split("-").map(line => line.trim()).filter(Boolean));
+	const highlightsValue = () => experience.highlights.map((highlight) => `- ${highlight}`).join("\n");
+	const updateHighlights = (value: string) => {
+		setExperience("highlights", value
+			.split("\n")
+			.map((line) => line.replace(/^-+/, "").trim())
+			.filter(Boolean));
+	};
+
 	return (
 		<div class="edit-card">
-			<button class="remove-button" type="button" onClick={props.removeExperience} aria-label="Remove contact">
-				<Icon name="close" />
-			</button>
+			<div class="edit-card-header">
+				<div>
+					<p class="edit-card-kicker">Experience {props.index + 1}</p>
+					<h3>{experience.role || "Untitled role"}</h3>
+				</div>
+				<button class="remove-button" type="button" onClick={props.removeExperience} aria-label="Remove experience">
+					<Icon name="close" />
+					<span>Remove</span>
+				</button>
+			</div>
 			<div class="container --col">
 				<label class="field">
 					<span>Company</span>
 					<input
 						type="text"
 						value={experience.company}
-						onInput={(event) => setExperience(produce(experience => experience.company = event.currentTarget.value))}
+						placeholder="OpenAI"
+						onInput={(event) => setExperience(produce((draft) => {
+							draft.company = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 				<label class="field">
@@ -29,7 +43,10 @@ function EditExperienceCard(props: { experience: Experience, removeExperience: (
 					<input
 						type="text"
 						value={experience.role}
-						onInput={(event) => setExperience(produce(experience => experience.role = event.currentTarget.value))}
+						placeholder="Frontend Engineer"
+						onInput={(event) => setExperience(produce((draft) => {
+							draft.role = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 			</div>
@@ -39,7 +56,9 @@ function EditExperienceCard(props: { experience: Experience, removeExperience: (
 					<input
 						type="month"
 						value={experience.start}
-						onInput={(event) => setExperience(produce(experience => experience.start = event.currentTarget.value))}
+						onInput={(event) => setExperience(produce((draft) => {
+							draft.start = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 				<label class="field --full">
@@ -47,45 +66,52 @@ function EditExperienceCard(props: { experience: Experience, removeExperience: (
 					<input
 						type="month"
 						value={experience.end}
-						onInput={(event) => setExperience(produce(experience => experience.end = event.currentTarget.value))}
+						onInput={(event) => setExperience(produce((draft) => {
+							draft.end = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 			</div>
 			<div class="container --col">
 				<label class="field --full">
 					<span>Highlights</span>
+					<small class="field-hint">Use one bullet per line. Keep each line concrete and outcome-focused.</small>
 					<textarea
 						rows="6"
 						value={highlightsValue()}
 						onInput={(event) => updateHighlights(event.currentTarget.value)}
-						placeholder={"- Built X feature - Improved Y metric - Led Z initiative"}
+						placeholder={"- Built a new onboarding flow that improved activation by 18%\n- Introduced shared UI patterns to speed up delivery\n- Led collaboration across design and engineering"}
 					/>
 				</label>
 			</div>
 		</div>
-	)
-
+	);
 }
 
-function EditExperienceSection(props: { resume: Resume }) {
-	const [experiences, setExperiences] = createStore(props.resume.experiences);
+function EditExperienceSection(props: { experiences: Experience[] }) {
+	const [experiences, setExperiences] = createStore(props.experiences);
+
 	return (
 		<>
-			<h2>Experience</h2>
-			<For each={experiences.slice().reverse()}>
-				{(experience, i) =>
+			<For each={experiences}>
+				{(experience, i) => (
 					<EditExperienceCard
 						experience={experience}
-						removeExperience={() => setExperiences(produce(experiences => experiences.splice(Number(i), 1)))} />
-				}
+						index={i()}
+						removeExperience={() => setExperiences(produce((draft) => draft.splice(i(), 1)))}
+					/>
+				)}
 			</For>
 			<button
-				class="add-button" type="button"
-				onClick={() => setExperiences(experiences.length, { company: "", role: "", start: "", end: "", highlights: [] })}>
+				class="add-button"
+				type="button"
+				onClick={() => setExperiences(experiences.length, { company: "", role: "", start: "", end: "", highlights: [] })}
+			>
 				<Icon name="add" />
+				<span>Add experience</span>
 			</button>
 		</>
-	)
+	);
 }
 
-export default EditExperienceSection
+export default EditExperienceSection;

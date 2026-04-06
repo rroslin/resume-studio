@@ -1,25 +1,34 @@
 import { For } from "solid-js";
 import { createStore, produce } from "solid-js/store";
-import type { Award, Resume } from "~/data/Resume";
+import type { Award } from "~/data/Resume";
 
 import Icon from "~/components/Icon";
 
-function EditAwardCard(props: { award: Award, removeAward: () => void }) {
+function EditAwardCard(props: { award: Award; index: number; removeAward: () => void }) {
 	const [award, setAward] = createStore(props.award);
+
 	return (
 		<div class="edit-card">
-			<button class="remove-button" type="button" onClick={props.removeAward} aria-label="Remove award">
-				<Icon name="close" />
-			</button>
-
-
+			<div class="edit-card-header">
+				<div>
+					<p class="edit-card-kicker">Award {props.index + 1}</p>
+					<h3>{award.name || "Untitled award"}</h3>
+				</div>
+				<button class="remove-button" type="button" onClick={props.removeAward} aria-label="Remove award">
+					<Icon name="close" />
+					<span>Remove</span>
+				</button>
+			</div>
 			<div class="container --col">
 				<label class="field">
 					<span>Name</span>
 					<input
 						type="text"
 						value={award.name}
-						onInput={(event) => setAward(produce(award => award.name = event.currentTarget.value))}
+						placeholder="Innovation Award"
+						onInput={(event) => setAward(produce((draft) => {
+							draft.name = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 			</div>
@@ -29,7 +38,10 @@ function EditAwardCard(props: { award: Award, removeAward: () => void }) {
 					<input
 						type="text"
 						value={award.company}
-						onInput={(event) => setAward(produce(award => award.company = event.currentTarget.value))}
+						placeholder="Acme Corp"
+						onInput={(event) => setAward(produce((draft) => {
+							draft.company = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 				<label class="field">
@@ -37,7 +49,10 @@ function EditAwardCard(props: { award: Award, removeAward: () => void }) {
 					<input
 						type="text"
 						value={award.project || ""}
-						onInput={(event) => setAward(produce(award => award.project = event.currentTarget.value))}
+						placeholder="Payments platform redesign"
+						onInput={(event) => setAward(produce((draft) => {
+							draft.project = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 				<label class="field --full">
@@ -46,35 +61,41 @@ function EditAwardCard(props: { award: Award, removeAward: () => void }) {
 						type="text"
 						value={award.date}
 						placeholder="10/2019"
-						onInput={(event) => setAward(produce(award => award.date = event.currentTarget.value))}
+						onInput={(event) => setAward(produce((draft) => {
+							draft.date = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 			</div>
 		</div>
-	)
+	);
 }
 
-function EditAwardSection(props: { resume: Resume }) {
-	const [awards, setAwards] = createStore(props.resume.awards);
+function EditAwardSection(props: { awards: Award[] }) {
+	const [awards, setAwards] = createStore(props.awards);
 
 	return (
 		<>
-			<h2>Awards</h2>
 			<For each={awards}>
-				{(award, i) =>
+				{(award, i) => (
 					<EditAwardCard
 						award={award}
-						removeAward={() => setAwards(produce(awards => awards.splice(i(), 1)))}
+						index={i()}
+						removeAward={() => setAwards(produce((draft) => draft.splice(i(), 1)))}
 					/>
-				}
+				)}
 			</For>
 			<button
-				class="add-button" type="button" aria-label="Add award"
-				onClick={() => setAwards(awards.length, { name: "", date: "", company: "", project: "" })}>
+				class="add-button"
+				type="button"
+				aria-label="Add award"
+				onClick={() => setAwards(awards.length, { name: "", date: "", company: "", project: "" })}
+			>
 				<Icon name="add" />
+				<span>Add award</span>
 			</button>
 		</>
-	)
+	);
 }
 
 export default EditAwardSection;

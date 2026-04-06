@@ -1,12 +1,11 @@
 import { For, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
-import type { Resume } from "~/data/Resume";
 
 import Icon from "~/components/Icon";
 
-function EditSkillSection(props: {resume: Resume}) {
+function EditSkillSection(props: { skills: string[] }) {
 	const [skillInput, setSkillInput] = createSignal("");
-	const [skills, setSkills] = createStore(props.resume.skills);
+	const [skills, setSkills] = createStore(props.skills);
 
 	const addSkill = () => {
 		const nextSkill = skillInput().trim();
@@ -19,11 +18,12 @@ function EditSkillSection(props: {resume: Resume}) {
 		setSkills(skills.length, nextSkill);
 		setSkillInput("");
 	};
-	
+
 	return (
 		<>
-			<h2>Skills</h2>
 			<label class="field">
+				<span>Add a skill</span>
+				<small class="field-hint">Press Enter or comma to add an item. Keep the list targeted to the role.</small>
 				<input
 					type="text"
 					value={skillInput()}
@@ -45,7 +45,8 @@ function EditSkillSection(props: {resume: Resume}) {
 							<button
 								class="skill-pill-remove"
 								type="button"
-								onClick={() => setSkills(produce(skills => skills.splice(Number(i), 1)))}
+								onClick={() => setSkills(produce((draft) => draft.splice(i(), 1)))}
+								aria-label={`Remove ${skill}`}
 							>
 								<Icon name="close" />
 							</button>
@@ -53,6 +54,10 @@ function EditSkillSection(props: {resume: Resume}) {
 					)}
 				</For>
 			</div>
+			<button class="add-button" type="button" onClick={addSkill}>
+				<Icon name="add" />
+				<span>Add skill</span>
+			</button>
 		</>
 	);
 }

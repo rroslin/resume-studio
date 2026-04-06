@@ -1,23 +1,34 @@
-import type { Education, Resume } from "~/data/Resume";
 import { For } from "solid-js";
 import { createStore, produce } from "solid-js/store";
+import type { Education } from "~/data/Resume";
 
 import Icon from "~/components/Icon";
 
-function EditEducationCard(props: { education: Education; removeEducation: () => void }) {
+function EditEducationCard(props: { education: Education; index: number; removeEducation: () => void }) {
 	const [education, setEducation] = createStore(props.education);
+
 	return (
 		<div class="edit-card">
-			<button class="remove-button" type="button" onClick={props.removeEducation} aria-label="Remove education">
-				<Icon name="close" />
-			</button>
+			<div class="edit-card-header">
+				<div>
+					<p class="edit-card-kicker">Education {props.index + 1}</p>
+					<h3>{education.institution || "Untitled school"}</h3>
+				</div>
+				<button class="remove-button" type="button" onClick={props.removeEducation} aria-label="Remove education">
+					<Icon name="close" />
+					<span>Remove</span>
+				</button>
+			</div>
 			<div class="container --col">
 				<label class="field">
 					<span>Institution</span>
 					<input
 						type="text"
 						value={education.institution}
-						onInput={(event) => setEducation(produce(education => education.institution = event.currentTarget.value))}
+						placeholder="University of the Philippines"
+						onInput={(event) => setEducation(produce((draft) => {
+							draft.institution = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 				<label class="field">
@@ -25,7 +36,10 @@ function EditEducationCard(props: { education: Education; removeEducation: () =>
 					<input
 						type="text"
 						value={education.degree}
-						onInput={(event) => setEducation(produce(education => education.degree = event.currentTarget.value))}
+						placeholder="BS Computer Science"
+						onInput={(event) => setEducation(produce((draft) => {
+							draft.degree = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 			</div>
@@ -36,7 +50,9 @@ function EditEducationCard(props: { education: Education; removeEducation: () =>
 						type="text"
 						value={education.start}
 						placeholder="2014"
-						onInput={(event) => setEducation(produce(education => education.start = event.currentTarget.value))}
+						onInput={(event) => setEducation(produce((draft) => {
+							draft.start = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 				<label class="field --full">
@@ -45,7 +61,9 @@ function EditEducationCard(props: { education: Education; removeEducation: () =>
 						type="text"
 						value={education.end}
 						placeholder="2018"
-						onInput={(event) => setEducation(produce(education => education.end = event.currentTarget.value))}
+						onInput={(event) => setEducation(produce((draft) => {
+							draft.end = event.currentTarget.value;
+						}))}
 					/>
 				</label>
 			</div>
@@ -53,23 +71,28 @@ function EditEducationCard(props: { education: Education; removeEducation: () =>
 	);
 }
 
-function EditEducationSection(props: { resume: Resume }) {
-	const [educations, setEducations] = createStore(props.resume.educations);
+function EditEducationSection(props: { educations: Education[] }) {
+	const [educations, setEducations] = createStore(props.educations);
+
 	return (
 		<>
-			<h2>Education</h2>
 			<For each={educations}>
 				{(education, i) => (
 					<EditEducationCard
 						education={education}
-						removeEducation={() => setEducations(produce((educations) => educations.splice(i(), 1)))}
+						index={i()}
+						removeEducation={() => setEducations(produce((draft) => draft.splice(i(), 1)))}
 					/>
 				)}
 			</For>
-			<button 
-				class="add-button" type="button" aria-label="Add education"
-				onClick={() => setEducations(educations.length, { institution: "", degree: "", start: "", end: "" })}>
+			<button
+				class="add-button"
+				type="button"
+				aria-label="Add education"
+				onClick={() => setEducations(educations.length, { institution: "", degree: "", start: "", end: "" })}
+			>
 				<Icon name="add" />
+				<span>Add education</span>
 			</button>
 		</>
 	);
