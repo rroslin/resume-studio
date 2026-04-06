@@ -1,6 +1,5 @@
 
 import { useResumeContext } from "~/contexts/ResumeContext";
-import { createStore, produce } from "solid-js/store";
 
 import "./EditPage.css"
 import EditContactSection from "./EditContactSection";
@@ -16,11 +15,8 @@ function EditPage() {
 			<EditContactSection resume={resume}/>
 			<EditExperienceSection resume={resume}/>
 			<EditSkillSection resume={resume}/>
-
-
+			<h2>Education</h2>
 			<h2>Awards</h2>
-
-
 		</form>
 	);
 }
