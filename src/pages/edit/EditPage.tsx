@@ -2,7 +2,9 @@
 import { useResumeContext } from "~/contexts/ResumeContext";
 
 import "./EditPage.css"
+import EditAwardSection from "./EditAwardSection";
 import EditContactSection from "./EditContactSection";
+import EditEducationSection from "./EditEducationSection";
 import EditExperienceSection from "./EditExperienceSection";
 import EditSkillSection from "./EditSkillSection";
 import EditProfileSection from "./EditProfileSection";
@@ -15,8 +17,8 @@ function EditPage() {
 			<EditContactSection resume={resume}/>
 			<EditExperienceSection resume={resume}/>
 			<EditSkillSection resume={resume}/>
-			<h2>Education</h2>
-			<h2>Awards</h2>
+			<EditEducationSection resume={resume}/>
+			<EditAwardSection resume={resume}/>
 		</form>
 	);
 }
