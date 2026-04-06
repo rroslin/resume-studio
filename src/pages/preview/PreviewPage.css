@@ -16,6 +16,10 @@
 	section {
 		margin-bottom: 1.75rem;
 		break-inside: avoid;
+		
+		&.--allow-break {
+			break-inside:auto;
+		}
 	}
 
 	section+section {
@@ -72,5 +76,13 @@
 		break-after: page;
 		-webkit-box-decoration-break: clone;
 		box-decoration-break: clone;
+	}
+
+	.preview-page:last-child {
+		break-after: auto;
+	}
+
+	.preview-page section:first-child {
+		break-inside: avoid;
 	}
 }

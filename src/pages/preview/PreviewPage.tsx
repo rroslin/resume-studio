@@ -1,10 +1,10 @@
 import { For } from 'solid-js/web'
-import { useResumeContext } from '../contexts/ResumeContext'
+import { useResumeContext } from '../../contexts/ResumeContext'
 
-import ProfileArticle from '../components/ProfileArticle'
-import ExperienceArticle from '../components/ExperienceArticle'
-import EducationItem from '../components/EducationItem'
-import AwardItem from '../components/AwardItem'
+import ProfileArticle from '../../components/ProfileArticle'
+import ExperienceArticle from '../../components/ExperienceArticle'
+import EducationItem from '../../components/EducationItem'
+import AwardItem from '../../components/AwardItem'
 
 import "./PreviewPage.css";
 
@@ -16,7 +16,7 @@ function PreviewPage() {
 			<section>
 				<ProfileArticle {...resume.profile} />
 			</section>
-			<section>
+			<section class='--allow-break'>
 				<h2>Experience</h2>
 				<For each={resume.experiences}>
 					{(experience) => <ExperienceArticle {...experience} />}
