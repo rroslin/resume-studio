@@ -18,7 +18,7 @@ function PreviewPage() {
 			</section>
 			<section class='--allow-break'>
 				<h2>Experience</h2>
-				<For each={resume.experiences}>
+				<For each={[...resume.experiences].reverse()}>
 					{(experience) => <ExperienceArticle {...experience} />}
 				</For>
 			</section>
@@ -32,13 +32,13 @@ function PreviewPage() {
 			</section>
 			<section>
 				<h2>Education</h2>
-				<For each={resume.educations}>
+				<For each={[...resume.educations].reverse()}>
 					{(education) => <EducationItem {...education} />}
 				</For>
 			</section>
 			<section>
 				<h2>Awards</h2>
-				<For each={resume.awards}>
+				<For each={[...resume.awards].reverse()}>
 					{(award) => <AwardItem {...award} />}
 				</For>
 			</section>

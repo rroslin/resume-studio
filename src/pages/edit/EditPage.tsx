@@ -62,7 +62,7 @@ function EditPage() {
 
 				<EditSectionPanel
 					title="Experience"
-					description="Capture the roles, timelines, and bullets that prove your strongest work."
+					description="Ordered chronologically from earliest to latest"
 				>
 					<EditExperienceSection experiences={resume.experiences} />
 				</EditSectionPanel>
@@ -76,14 +76,14 @@ function EditPage() {
 
 				<EditSectionPanel
 					title="Education"
-					description="Add the academic details that matter for the roles you are targeting."
+					description="Ordered chronologically from earliest to latest"
 				>
 					<EditEducationSection educations={resume.educations} />
 				</EditSectionPanel>
 
 				<EditSectionPanel
 					title="Awards"
-					description="Highlight recognition that reinforces your craft and credibility."
+					description="Ordered chronologically from earliest to latest"
 				>
 					<EditAwardSection awards={resume.awards} />
 				</EditSectionPanel>

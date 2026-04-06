@@ -22,7 +22,32 @@
 		]
 	},
 	"experiences": [
+				{
+			"company": "Accenture Inc.",
+			"role": "Software Engineer",
+			"start": "11/2018",
+			"end": "02/2021",
+			"highlights": [
+				"Provided support and Code Maintenance for client Provisioning system, ensuring job orders are fulfilled through interconnected support systems.",
+				"Developed a data conversion tool independently for a geographic information system (GIS) that is used to provide vendors and partner companies with marketing insights. Coordinated directly with client business analysts and accurately delivered functional requirements.",
+				"Supervised a team of 5 software engineers for an initiative to research tooling and training resource for migrating a code versioning system (SVN to GIT). The team eventually successfully migrated all codebase to GIT and provided project wide training for basics to advance usage of GIT.",
+				"Provided system analysis for suspected software defects and created documentation and code fix.",
+				"Developed automation tooling used to supplement robotic process automation (RPA) that increases success rate automated jobs.",
+				"Got hired through Student Leadership Conference, that allowed skipping junior level and directly hired as a Software Engineer."
+			]
+		},
 		{
+			"company": "Freelance",
+			"role": "Fullstack Developer",
+			"start": "10/2021",
+			"end": "Present",
+			"highlights": [
+				"Developed independently a exam question repository for a learning institution (MERN Full Stack).",
+				"Developed and integrated a authentication service (JWT based) for a learning institution.",
+				"Tutored students on variety of web-development frameworks. (Django, MERN)"
+			]
+		},
+				{
 			"company": "StrongMind",
 			"role": "Senior Software Engineer",
 			"start": "09/2022",
@@ -40,32 +65,8 @@
 				"Contributed to ETL processes and built basic data visualizations for internal reporting.",
 				"Mentored team members on how to tackle issues and breakdown problems to smaller tasks."
 			]
-		},
-		{
-			"company": "Freelance",
-			"role": "Fullstack Developer",
-			"start": "10/2021",
-			"end": "Present",
-			"highlights": [
-				"Developed independently a exam question repository for a learning institution (MERN Full Stack).",
-				"Developed and integrated a authentication service (JWT based) for a learning institution.",
-				"Tutored students on variety of web-development frameworks. (Django, MERN)"
-			]
-		},
-		{
-			"company": "Accenture Inc.",
-			"role": "Software Engineer",
-			"start": "11/2018",
-			"end": "02/2021",
-			"highlights": [
-				"Provided support and Code Maintenance for client Provisioning system, ensuring job orders are fulfilled through interconnected support systems.",
-				"Developed a data conversion tool independently for a geographic information system (GIS) that is used to provide vendors and partner companies with marketing insights. Coordinated directly with client business analysts and accurately delivered functional requirements.",
-				"Supervised a team of 5 software engineers for an initiative to research tooling and training resource for migrating a code versioning system (SVN to GIT). The team eventually successfully migrated all codebase to GIT and provided project wide training for basics to advance usage of GIT.",
-				"Provided system analysis for suspected software defects and created documentation and code fix.",
-				"Developed automation tooling used to supplement robotic process automation (RPA) that increases success rate automated jobs.",
-				"Got hired through Student Leadership Conference, that allowed skipping junior level and directly hired as a Software Engineer."
-			]
 		}
+
 	],
 	"skills": [
 		"C#",
