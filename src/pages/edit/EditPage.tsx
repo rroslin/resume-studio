@@ -9,14 +9,6 @@ import EditProfileSection from "./EditProfileSection";
 import EditSectionPanel from "./EditSectionPanel";
 import EditSkillSection from "./EditSkillSection";
 
-const sections = [
-	"Profile",
-	"Contacts",
-	"Experience",
-	"Education",
-	"Awards"
-] as const
-
 function EditPage() {
 	const { resume } = useResumeContext();
 
@@ -26,24 +18,34 @@ function EditPage() {
 				<div class="edit-sidebar-card">
 					<p class="edit-sidebar-kicker">Resume Studio</p>
 					<nav class="edit-nav" aria-label="Edit sections">
-						{sections.map((section) => (
-							<a href={`#${section.toLowerCase()}`} class="edit-nav-link">
-								<span>{section}</span>
-							</a>
-						))}
+						<a href="#profile" class="edit-nav-link">
+							<span>Profile</span>
+						</a>
+						<a href="#contacts" class="edit-nav-link">
+							<span>Contacts</span>
+							<strong class="edit-nav-count">{resume.profile.contacts.length}</strong>
+						</a>
+						<a href="#experience" class="edit-nav-link">
+							<span>Experience</span>
+							<strong class="edit-nav-count">{resume.experiences.length}</strong>
+						</a>
+						<a href="#skills" class="edit-nav-link">
+							<span>Skills</span>
+							<strong class="edit-nav-count">{resume.skills.length}</strong>
+						</a>
+						<a href="#education" class="edit-nav-link">
+							<span>Education</span>
+							<strong class="edit-nav-count">{resume.educations.length}</strong>
+						</a>
+						<a href="#awards" class="edit-nav-link">
+							<span>Awards</span>
+							<strong class="edit-nav-count">{resume.awards.length}</strong>
+						</a>
 					</nav>
 				</div>
 			</aside>
 
 			<form class="edit-page" aria-label="Edit resume form">
-				<div class="edit-page-hero">
-					<div class="edit-page-stats" aria-label="Resume section counts">
-						<p><strong>{resume.experiences.length}</strong> experiences</p>
-						<p><strong>{resume.skills.length}</strong> skills</p>
-						<p><strong>{resume.profile.contacts.length}</strong> contacts</p>
-					</div>
-				</div>
-
 				<EditSectionPanel
 					title="Profile"
 					description="Set the headline details that anchor the rest of the resume."
