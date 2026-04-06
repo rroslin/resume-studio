@@ -1,5 +1,5 @@
 import { For, Show } from "solid-js";
-import { createStore, produce, type SetStoreFunction } from "solid-js/store";
+import { createStore, produce } from "solid-js/store";
 import type { Contact, Resume } from "~/data/Resume";
 
 import Icon from "~/components/Icon";
