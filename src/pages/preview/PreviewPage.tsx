@@ -1,10 +1,10 @@
 import { For } from 'solid-js/web'
 import { useResumeContext } from '../../contexts/ResumeContext'
 
-import ProfileArticle from '../../components/ProfileArticle'
-import ExperienceArticle from '../../components/ExperienceArticle'
-import EducationItem from '../../components/EducationItem'
-import AwardItem from '../../components/AwardItem'
+import ProfileArticle from './ProfileArticle'
+import ExperienceArticle from './ExperienceArticle'
+import EducationItem from './EducationItem'
+import AwardItem from './AwardItem'
 
 import "./PreviewPage.css";
 
