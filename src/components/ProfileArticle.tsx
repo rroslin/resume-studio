@@ -29,7 +29,7 @@ function ProfileArticle(props: ProfileArticleProps) {
 					</div>
 				</div>
 			</article>
-			<span>{props.summary}</span>
+			<div class="profile__summary">{props.summary}</div>
 		</>
 
 	)

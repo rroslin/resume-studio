@@ -34,3 +34,13 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+
+.profile__summary {
+	margin-top: 1.5rem;
+}
+
+@media print {
+	.profile__contact {
+		flex-wrap: nowrap;
+	}
+}
