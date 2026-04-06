@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { For, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import type { Experience } from "~/data/Resume";
 
@@ -6,12 +6,16 @@ import Icon from "~/components/Icon";
 
 function EditExperienceCard(props: { experience: Experience; index: number; removeExperience: () => void }) {
 	const [experience, setExperience] = createStore(props.experience);
-	const highlightsValue = () => experience.highlights.map((highlight) => `- ${highlight}`).join("\n");
+	const formatHighlights = (highlights: string[]) => highlights.map((highlight) => `- ${highlight}`).join("\n");
+	const [rawHighlights, setRawHighlights] = createSignal(formatHighlights(experience.highlights));
 	const updateHighlights = (value: string) => {
-		setExperience("highlights", value
+		const nextHighlights = value
 			.split("\n")
 			.map((line) => line.replace(/^-+/, "").trim())
-			.filter(Boolean));
+			.filter(Boolean);
+
+		setExperience("highlights", nextHighlights);
+		setRawHighlights(formatHighlights(nextHighlights));
 	};
 
 	return (
@@ -32,7 +36,7 @@ function EditExperienceCard(props: { experience: Experience; index: number; remo
 					<input
 						type="text"
 						value={experience.company}
-						placeholder="OpenAI"
+						placeholder="Acme Company"
 						onInput={(event) => setExperience(produce((draft) => {
 							draft.company = event.currentTarget.value;
 						}))}
@@ -78,8 +82,9 @@ function EditExperienceCard(props: { experience: Experience; index: number; remo
 					<small class="field-hint">Use one bullet per line. Keep each line concrete and outcome-focused.</small>
 					<textarea
 						rows="6"
-						value={highlightsValue()}
-						onInput={(event) => updateHighlights(event.currentTarget.value)}
+						value={rawHighlights()}
+						onInput={(event) => setRawHighlights(event.currentTarget.value)}
+						onBlur={(event) => updateHighlights(event.currentTarget.value)}
 						placeholder={"- Built a new onboarding flow that improved activation by 18%\n- Introduced shared UI patterns to speed up delivery\n- Led collaboration across design and engineering"}
 					/>
 				</label>
@@ -94,13 +99,17 @@ function EditExperienceSection(props: { experiences: Experience[] }) {
 	return (
 		<>
 			<For each={experiences}>
-				{(experience, i) => (
-					<EditExperienceCard
-						experience={experience}
-						index={i()}
-						removeExperience={() => setExperiences(produce((draft) => draft.splice(i(), 1)))}
-					/>
-				)}
+				{(experience, i) => {
+					const originalIndex = () => experiences.length - 1 - i();
+
+					return (
+						<EditExperienceCard
+							index={i()}
+							experience={experience}
+							removeExperience={() => setExperiences(produce((draft) => draft.splice(originalIndex(), 1)))}
+						/>
+					);
+				}}
 			</For>
 			<button
 				class="add-button"
