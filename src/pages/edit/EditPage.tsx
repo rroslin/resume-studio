@@ -5,11 +5,11 @@ import { createStore, produce } from "solid-js/store";
 import "./EditPage.css"
 import EditContactSection from "./EditContactSection";
 import EditExperienceSection from "./EditExperienceSection";
+import EditSkillSection from "./EditSkillSection";
 
 function EditPage() {
 	const { resume } = useResumeContext();
 	const [profile, setProfile] = createStore(resume.profile);
-
 	return (
 		<form class="edit-page" aria-label="Edit resume form">
 			<h2>Profile</h2>
@@ -55,19 +55,10 @@ function EditPage() {
 						onInput={(event) => setProfile(produce(profile => profile.summary = event.currentTarget.value))}
 					/>
 				</label>
-				<label class="field">
-					<span>Photo URL</span>
-					<input
-						type="url"
-						value={resume.profile.photoUrl || ""}
-						onInput={(event) => setProfile(produce(profile => profile.photoUrl = event.currentTarget.value))}
-					/>
-				</label>
 			</div>
 			<EditContactSection resume={resume}/>
 			<EditExperienceSection resume={resume}/>
-
-			<h2>Skills</h2>
+			<EditSkillSection resume={resume}/>
 
 			<h2>Education</h2>
 
