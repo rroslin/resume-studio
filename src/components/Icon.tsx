@@ -6,7 +6,8 @@ const iconNames = [
 	"email",
 	"phone",
 	"github",
-	"printer"
+	"printer",
+	"pencil"
 ] as const
 
 function Icon(props: {name: typeof iconNames[number]}) {

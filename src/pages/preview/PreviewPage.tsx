@@ -1,4 +1,5 @@
 import { For } from 'solid-js/web'
+import { useNavigate } from '@solidjs/router'
 import { useResumeContext } from '../../contexts/ResumeContext'
 
 import ProfileArticle from './ProfileArticle'
@@ -11,14 +12,17 @@ import Icon from '~/components/Icon'
 
 function PreviewPage() {
 	const { resume } = useResumeContext();
+	const navigate = useNavigate();
 	return (
 		<div class="preview-view">
 			<div class="preview-toolbar">
-				<button class="print-button" type="button" onClick={() => window.print()}>
-					<Icon name="printer"/>
+				<button class="toolbar-button" type="button" onClick={() => navigate('/edit')}>
+					<Icon name="pencil" />
+				</button>
+				<button class="toolbar-button" type="button" onClick={() => window.print()}>
+					<Icon name="printer" />
 				</button>
 			</div>
-
 			<div class="preview-page">
 				<section>
 					<ProfileArticle {...resume.profile} />
