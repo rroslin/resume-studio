@@ -1,4 +1,6 @@
+import { useNavigate } from "@solidjs/router";
 import { useResumeContext } from "~/contexts/ResumeContext";
+import Icon from "~/components/Icon";
 
 import "./EditPage.css";
 import EditAwardSection from "./EditAwardSection";
@@ -11,40 +13,10 @@ import EditSkillSection from "./EditSkillSection";
 
 function EditPage() {
 	const { resume } = useResumeContext();
+	const navigate = useNavigate();
 
 	return (
 		<div class="edit-shell">
-			<aside class="edit-sidebar">
-				<div class="edit-sidebar-card">
-					<p class="edit-sidebar-kicker">Resume Studio</p>
-					<nav class="edit-nav" aria-label="Edit sections">
-						<a href="#profile" class="edit-nav-link">
-							<span>Profile</span>
-						</a>
-						<a href="#contacts" class="edit-nav-link">
-							<span>Contacts</span>
-							<strong class="edit-nav-count">{resume.profile.contacts.length}</strong>
-						</a>
-						<a href="#experience" class="edit-nav-link">
-							<span>Experience</span>
-							<strong class="edit-nav-count">{resume.experiences.length}</strong>
-						</a>
-						<a href="#skills" class="edit-nav-link">
-							<span>Skills</span>
-							<strong class="edit-nav-count">{resume.skills.length}</strong>
-						</a>
-						<a href="#education" class="edit-nav-link">
-							<span>Education</span>
-							<strong class="edit-nav-count">{resume.educations.length}</strong>
-						</a>
-						<a href="#awards" class="edit-nav-link">
-							<span>Awards</span>
-							<strong class="edit-nav-count">{resume.awards.length}</strong>
-						</a>
-					</nav>
-				</div>
-			</aside>
-
 			<form class="edit-page" aria-label="Edit resume form">
 				<EditSectionPanel
 					title="Profile"
@@ -88,6 +60,40 @@ function EditPage() {
 					<EditAwardSection awards={resume.awards} />
 				</EditSectionPanel>
 			</form>
+			<aside class="edit-sidebar">
+				<div class="edit-sidebar-card">
+					<p class="edit-sidebar-kicker">Resume Studio</p>
+					<button class="edit-preview-button" type="button" onClick={() => navigate('/preview')}>
+						<Icon name="printer" />
+						<span>Preview</span>
+					</button>
+					<nav class="edit-nav" aria-label="Edit sections">
+						<a href="#profile" class="edit-nav-link">
+							<span>Profile</span>
+						</a>
+						<a href="#contacts" class="edit-nav-link">
+							<span>Contacts</span>
+							<strong class="edit-nav-count">{resume.profile.contacts.length}</strong>
+						</a>
+						<a href="#experience" class="edit-nav-link">
+							<span>Experience</span>
+							<strong class="edit-nav-count">{resume.experiences.length}</strong>
+						</a>
+						<a href="#skills" class="edit-nav-link">
+							<span>Skills</span>
+							<strong class="edit-nav-count">{resume.skills.length}</strong>
+						</a>
+						<a href="#education" class="edit-nav-link">
+							<span>Education</span>
+							<strong class="edit-nav-count">{resume.educations.length}</strong>
+						</a>
+						<a href="#awards" class="edit-nav-link">
+							<span>Awards</span>
+							<strong class="edit-nav-count">{resume.awards.length}</strong>
+						</a>
+					</nav>
+				</div>
+			</aside>
 		</div>
 	);
 }

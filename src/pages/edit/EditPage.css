@@ -1,12 +1,14 @@
 .edit-shell {
 	width: min(1380px, calc(100vw - 2rem));
 	display: grid;
-	grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+	grid-template-columns: minmax(0, 1fr) minmax(230px, 280px) ;
+
 	gap: 1.5rem;
 	align-items: start;
 }
 
 .edit-sidebar {
+	
 	position: sticky;
 	top: 1.5rem;
 }
@@ -34,6 +36,44 @@
 	margin: 0;
 	color: #5d6c82;
 	line-height: 1.6;
+}
+
+.edit-preview-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.65rem;
+	width: 100%;
+	margin-top: 1.1rem;
+	padding: 0.85rem 1rem;
+	border: 0;
+	border-radius: 999px;
+	background: var(--page-accent);
+	color: white;
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+.edit-preview-button:hover {
+	filter: brightness(1.05);
+}
+
+.edit-preview-button:active {
+	transform: translateY(1px);
+}
+
+.edit-preview-button:focus-visible {
+	outline: 2px solid rgba(35, 52, 77, 0.35);
+	outline-offset: 3px;
+}
+
+.edit-preview-button svg {
+	width: 1rem;
+	height: 1rem;
+	display: block;
+	fill: currentColor;
 }
 
 .edit-nav {
