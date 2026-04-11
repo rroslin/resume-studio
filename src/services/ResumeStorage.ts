@@ -1,5 +1,5 @@
 import type { Resume } from '~/data/Resume';
-import { createEffect } from 'solid-js';
+import { createEffect, createSignal, on, type Accessor, type Setter } from 'solid-js';
 import { createStore, produce } from 'solid-js/store';
 
 const STORE_KEY = 'resume-generator.store';
@@ -15,8 +15,8 @@ type ResumeRecord = {
 
 type ResumeStorage = {
 	records: ResumeRecord[];
+	getResume: (id: ResumeId) => readonly [Accessor<Resume>, Setter<Resume>] | null;
 	createRecord: (seed?: Resume) => void;
-	updateRecord: (id: ResumeId, updater: (resume: Resume) => Resume) => void;
 	removeRecord: (id: ResumeId) => void;
 }
 
@@ -65,6 +65,28 @@ function loadLocalStorage(): ResumeRecord[] {
 function createResumeStorage(): ResumeStorage {
 	const [records, setRecords] = createStore<ResumeRecord[]>(loadLocalStorage());
 
+	function getResume(id: ResumeId): readonly [Accessor<Resume>, Setter<Resume>] | null {
+		const result = records.find(record => record.id === id);
+		if (!result) {
+			console.error(`record id:${id} not found`);
+			return null;
+		}
+
+		const [resume, setResume] = createSignal(result.resume);
+
+		createEffect(on(resume, () => {
+			setRecords(
+				record => record.id === id,
+				produce(record => {
+					record.resume = structuredClone(resume());
+					record.updatedAt = new Date().toISOString();
+				})
+			);
+		}, { defer: true }));
+
+		return [resume, setResume] as const;
+	}
+
 	function createRecord(seed?: Resume): void {
 		const resume = structuredClone(seed ?? createEmptyResume());
 		const timestamp = new Date().toISOString();
@@ -76,24 +98,7 @@ function createResumeStorage(): ResumeStorage {
 			resume
 		};
 
-		setRecords(produce(records => records.push(record)));
-	}
-
-	function updateRecord(id: ResumeId, updater: (resume: Resume) => Resume) {
-		const record = records.find(record => record.id === id);
-		if (!record) {
-			return;
-		}
-
-		setRecords(produce(records => {
-			const target = records.find(record => record.id === id);
-			if (!target) {
-				return;
-			}
-
-			target.resume = structuredClone(updater(structuredClone(target.resume)));
-			target.updatedAt = new Date().toISOString();
-		}));
+		setRecords(records.length, record);
 	}
 
 	function removeRecord(id: ResumeId): void {
@@ -114,7 +119,7 @@ function createResumeStorage(): ResumeStorage {
 	return {
 		records,
 		createRecord,
-		updateRecord,
+		getResume,
 		removeRecord,
 	}
 }
