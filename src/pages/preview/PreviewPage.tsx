@@ -11,12 +11,12 @@ import "./PreviewPage.css";
 import Icon from '~/components/Icon'
 
 function PreviewPage() {
-	const { resume } = useResumeContext();
+	const { resume, resumeId } = useResumeContext();
 	const navigate = useNavigate();
 	return (
 		<div class="preview-view">
 			<div class="preview-toolbar">
-				<button class="toolbar-button" type="button" onClick={() => navigate('/edit')}>
+				<button class="toolbar-button" type="button" onClick={() => navigate(`/edit/${resumeId}`)}>
 					<Icon name="pencil" />
 				</button>
 				<button class="toolbar-button" type="button" onClick={() => window.print()}>

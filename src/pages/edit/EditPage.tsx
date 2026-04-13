@@ -12,7 +12,7 @@ import EditSectionPanel from "./EditSectionPanel";
 import EditSkillSection from "./EditSkillSection";
 
 function EditPage() {
-	const { resume } = useResumeContext();
+	const { resume, resumeId } = useResumeContext();
 	const navigate = useNavigate();
 
 	return (
@@ -63,7 +63,7 @@ function EditPage() {
 			<aside class="edit-sidebar">
 				<div class="edit-sidebar-card">
 					<p class="edit-sidebar-kicker">Resume Studio</p>
-					<button class="edit-preview-button" type="button" onClick={() => navigate('/preview')}>
+					<button class="edit-preview-button" type="button" onClick={() => navigate(`/preview/${resumeId}`)}>
 						<Icon name="printer" />
 						<span>Preview</span>
 					</button>
