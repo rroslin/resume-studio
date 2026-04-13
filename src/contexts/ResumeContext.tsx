@@ -1,10 +1,11 @@
-import type { SetStoreFunction } from "solid-js/store";
+import type { Setter } from "solid-js";
 import type { Resume } from "../data/Resume";
 import { createContext, useContext } from "solid-js";
 
 type ResumeContextValues = {
-	resume: Resume
-	setResume: SetStoreFunction<Resume>
+	resume: Resume;
+	resumeId: string;
+	setResume: Setter<Resume>;
 }
 
 export const ResumeContext = createContext<ResumeContextValues>();
