@@ -1,5 +1,5 @@
 import { Route, Router } from '@solidjs/router';
-import { createEffect, createMemo, Match, Switch, type JSX } from 'solid-js';
+import { createEffect, createMemo, Match, Switch, on, type JSX } from 'solid-js';
 import { createStore, reconcile, unwrap } from 'solid-js/store';
 import { render } from 'solid-js/web';
 
@@ -35,15 +35,19 @@ function ResumeRoute(props: { id: string | undefined; children: JSX.Element }) {
 		setResume(reconcile(structuredClone(unwrap(nextResume))));
 	});
 
-	createEffect(() => {
-		const id = props.id;
-		if (!id || !storage()) {
-			return;
-		}
+	createEffect(on(
+		() => JSON.stringify(resume),
+		(serializedResume) => {
+			const id = props.id;
+			if (!id || !storage()) {
+				return;
+			}
 
-		resumeStorage.updateRecord(id as ResumeId, unwrap(resume));
-		document.title = `${resume.profile.firstName || 'Untitled'} ${resume.profile.lastName?.charAt(0) ?? ''}.`.trim();
-	});
+			const nextResume = JSON.parse(serializedResume) as Resume;
+			resumeStorage.updateRecord(id as ResumeId, nextResume);
+			document.title = `${nextResume.profile.firstName || 'Untitled'} ${nextResume.profile.lastName?.charAt(0) ?? ''}.`.trim();
+		}
+	));
 
 	return (
 		<Switch>
