@@ -1,4 +1,4 @@
-import { For } from 'solid-js/web'
+import { For, Show } from 'solid-js/web'
 import { useNavigate } from '@solidjs/router'
 import { useResumeContext } from '../../contexts/ResumeContext'
 
@@ -27,32 +27,40 @@ function PreviewPage() {
 				<section>
 					<ProfileArticle {...resume.profile} />
 				</section>
-				<section class='--allow-break'>
-					<h2>Experience</h2>
-					<For each={[...resume.experiences].reverse()}>
-						{(experience) => <ExperienceArticle {...experience} />}
-					</For>
-				</section>
-				<section>
-					<h2>Skills</h2>
-					<div class="skills">
-						<For each={resume.skills}>
-							{(skill) => <div class="badge">{skill}</div>}
+				<Show when={resume.experiences.length !== 0}>
+					<section class='--allow-break'>
+						<h2>Experience</h2>
+						<For each={[...resume.experiences].reverse()}>
+							{(experience) => <ExperienceArticle {...experience} />}
 						</For>
-					</div>
-				</section>
-				<section>
-					<h2>Education</h2>
-					<For each={[...resume.educations].reverse()}>
-						{(education) => <EducationItem {...education} />}
-					</For>
-				</section>
-				<section>
-					<h2>Awards</h2>
-					<For each={[...resume.awards].reverse()}>
-						{(award) => <AwardItem {...award} />}
-					</For>
-				</section>
+					</section>
+				</Show>
+				<Show when={resume.skills.length !== 0}>
+					<section>
+						<h2>Skills</h2>
+						<div class="skills">
+							<For each={resume.skills}>
+								{(skill) => <div class="badge">{skill}</div>}
+							</For>
+						</div>
+					</section>
+				</Show>
+				<Show when={resume.educations.length !== 0}>
+					<section>
+						<h2>Education</h2>
+						<For each={[...resume.educations].reverse()}>
+							{(education) => <EducationItem {...education} />}
+						</For>
+					</section>
+				</Show>
+				<Show when={resume.awards.length !== 0}>
+					<section>
+						<h2>Awards</h2>
+						<For each={[...resume.awards].reverse()}>
+							{(award) => <AwardItem {...award} />}
+						</For>
+					</section>
+				</Show>
 			</div>
 		</div>
 	)
