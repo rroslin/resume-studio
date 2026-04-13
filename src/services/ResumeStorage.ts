@@ -1,22 +1,23 @@
 import type { Resume } from '~/data/Resume';
-import { createEffect, createSignal, on, type Accessor, type Setter } from 'solid-js';
+import { createEffect } from 'solid-js';
 import { createStore, produce } from 'solid-js/store';
 
 const STORE_KEY = 'resume-generator.store';
 
-type ResumeId = `${string}-${string}-${string}-${string}-${string}`;
+export type ResumeId = `${string}-${string}-${string}-${string}-${string}`;
 
-type ResumeRecord = {
+export type ResumeRecord = {
 	id: ResumeId;
 	createdAt: string;
 	updatedAt: string;
 	resume: Resume;
 };
 
-type ResumeStorage = {
+export type ResumeStorage = {
 	records: ResumeRecord[];
-	getResume: (id: ResumeId) => readonly [Accessor<Resume>, Setter<Resume>] | null;
-	createRecord: (seed?: Resume) => void;
+	getRecord: (id: ResumeId) => ResumeRecord | null;
+	updateRecord: (id: ResumeId, resume: Resume) => void;
+	createRecord: (seed?: Resume) => ResumeId;
 	removeRecord: (id: ResumeId) => void;
 }
 
@@ -65,40 +66,44 @@ function loadLocalStorage(): ResumeRecord[] {
 function createResumeStorage(): ResumeStorage {
 	const [records, setRecords] = createStore<ResumeRecord[]>(loadLocalStorage());
 
-	function getResume(id: ResumeId): readonly [Accessor<Resume>, Setter<Resume>] | null {
+	function getRecord(id: ResumeId): ResumeRecord | null {
 		const result = records.find(record => record.id === id);
 		if (!result) {
 			console.error(`record id:${id} not found`);
 			return null;
 		}
 
-		const [resume, setResume] = createSignal(result.resume);
-
-		createEffect(on(resume, () => {
-			setRecords(
-				record => record.id === id,
-				produce(record => {
-					record.resume = structuredClone(resume());
-					record.updatedAt = new Date().toISOString();
-				})
-			);
-		}, { defer: true }));
-
-		return [resume, setResume] as const;
+		return result;
 	}
 
-	function createRecord(seed?: Resume): void {
+	function updateRecord(id: ResumeId, resume: Resume): void {
+		if (!records.some(record => record.id === id)) {
+			return;
+		}
+
+		setRecords(
+			record => record.id === id,
+			produce(record => {
+				record.resume = structuredClone(resume);
+				record.updatedAt = new Date().toISOString();
+			})
+		);
+	}
+
+	function createRecord(seed?: Resume): ResumeId {
 		const resume = structuredClone(seed ?? createEmptyResume());
 		const timestamp = new Date().toISOString();
+		const id = crypto.randomUUID();
 
 		const record: ResumeRecord = {
-			id: crypto.randomUUID(),
+			id,
 			createdAt: timestamp,
 			updatedAt: timestamp,
 			resume
 		};
 
 		setRecords(records.length, record);
+		return id;
 	}
 
 	function removeRecord(id: ResumeId): void {
@@ -119,7 +124,8 @@ function createResumeStorage(): ResumeStorage {
 	return {
 		records,
 		createRecord,
-		getResume,
+		getRecord,
+		updateRecord,
 		removeRecord,
 	}
 }
