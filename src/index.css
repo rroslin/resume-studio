@@ -43,3 +43,24 @@ main {
 	gap: 1.5rem;
 	padding: 1.5rem 0 3rem;
 }
+
+@media print {
+	html,
+	body,
+	#root,
+	main {
+		height: auto;
+		background: transparent !important;
+		background-image: none !important;
+	}
+
+	body {
+		margin: 0;
+	}
+
+	main {
+		display: block;
+		padding: 0;
+		gap: 0;
+	}
+}

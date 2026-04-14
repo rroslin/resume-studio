@@ -293,24 +293,8 @@
 }
 
 @media print {
-
 	.preview-toolbar {
 		display: none;
-	}
-
-	html,
-	body,
-	#root {
-		height: auto;
-	}
-
-	body {
-		background: transparent;
-	}
-
-	main {
-		display: block;
-		padding: 0;
 	}
 
 	.preview-page {
