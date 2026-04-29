@@ -13,13 +13,17 @@ import Icon from '~/components/Icon'
 function PreviewPage() {
 	const { resume, resumeId } = useResumeContext();
 	const navigate = useNavigate();
+	const handlePrint = async () => {
+		await document.fonts.ready;
+		window.print();
+	};
 	return (
 		<div class="preview-view">
 			<div class="preview-toolbar">
 				<button class="toolbar-button" type="button" onClick={() => navigate(`/edit/${resumeId}`)}>
 					<Icon name="pencil" />
 				</button>
-				<button class="toolbar-button" type="button" onClick={() => window.print()}>
+				<button class="toolbar-button" type="button" onClick={handlePrint}>
 					<Icon name="printer" />
 				</button>
 			</div>
