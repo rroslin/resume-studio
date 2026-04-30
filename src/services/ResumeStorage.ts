@@ -1,5 +1,4 @@
 import type { Resume } from '~/data/Resume';
-import { createEffect } from 'solid-js';
 import { createStore, produce } from 'solid-js/store';
 
 const STORE_KEY = 'resume-generator.store';
@@ -66,6 +65,14 @@ function loadLocalStorage(): ResumeRecord[] {
 function createResumeStorage(): ResumeStorage {
 	const [records, setRecords] = createStore<ResumeRecord[]>(loadLocalStorage());
 
+	function persistRecords(): void {
+		if (typeof window === 'undefined') {
+			throw new Error('localStorage does not exist');
+		}
+
+		window.localStorage.setItem(STORE_KEY, JSON.stringify(records));
+	}
+
 	function getRecord(id: ResumeId): ResumeRecord | null {
 		const result = records.find(record => record.id === id);
 		if (!result) {
@@ -88,6 +95,8 @@ function createResumeStorage(): ResumeStorage {
 				record.updatedAt = new Date().toISOString();
 			})
 		);
+
+		persistRecords();
 	}
 
 	function createRecord(seed?: Resume): ResumeId {
@@ -103,6 +112,7 @@ function createResumeStorage(): ResumeStorage {
 		};
 
 		setRecords(records.length, record);
+		persistRecords();
 		return id;
 	}
 
@@ -112,14 +122,8 @@ function createResumeStorage(): ResumeStorage {
 		}
 
 		setRecords(records => records.filter(record => record.id !== id));
+		persistRecords();
 	}
-
-	createEffect(() => {
-		if (typeof window === 'undefined') {
-			throw new Error('localStorage does not exist');
-		}
-		window.localStorage.setItem(STORE_KEY, JSON.stringify(records));
-	});
 
 	return {
 		records,
